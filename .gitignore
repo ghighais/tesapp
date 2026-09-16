@@ -1,8 +1,47 @@
-node_modules/
-build/
-dist/
-coverage/
-.DS_Store
-*.log
+# ==========================================
+# GHIGHAIS AI - SECURE .GITIGNORE
+# Files & directories ignored for GitHub & ZIP security
+# ==========================================
+
+# Environment & Secrets
+.env
+.env.local
+.env.production
 .env*
 !.env.example
+*.pem
+*.key
+credentials.json
+service-account.json
+
+# Dependencies
+node_modules/
+
+# Production & Build outputs
+.next/
+out/
+dist/
+build/
+.vercel/
+.cache/
+coverage/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database & SQLite files
+*.sqlite
+*.db
+*.sql
+prisma/dev.db
+
+# Logs
+*.log

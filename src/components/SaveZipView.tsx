@@ -14,7 +14,8 @@ import {
   HardDrive, 
   CheckCircle2, 
   RefreshCw,
-  FolderArchive
+  FolderArchive,
+  Shield
 } from 'lucide-react';
 import { DatabaseItem, GitHubUser, GitHubRepo } from '../types';
 
@@ -27,7 +28,7 @@ interface SaveZipViewProps {
 interface ExportFile {
   name: string;
   path: string;
-  category: 'env' | 'code' | 'doc' | 'json';
+  category: 'env' | 'code' | 'doc' | 'json' | 'git';
   description: string;
   content: string;
   selected: boolean;
@@ -152,7 +153,51 @@ export async function getSession() {
 }
 `;
 
-    // 6. README.md
+    // 6. .gitignore (Wajib ada untuk keamanan saat push ke GitHub atau unduh ZIP)
+    const gitignoreContent = `# ==========================================
+# GHIGHAIS AI - SECURE .GITIGNORE
+# Files & directories ignored for GitHub & ZIP security
+# ==========================================
+
+# Environment & Secrets
+.env
+.env.local
+.env.production
+*.pem
+*.key
+credentials.json
+service-account.json
+
+# Dependencies
+node_modules/
+
+# Production & Build outputs
+.next/
+out/
+dist/
+build/
+.vercel/
+.cache/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Database & SQLite files
+*.sqlite
+*.db
+*.sql
+prisma/dev.db
+`;
+
+    // 7. README.md
     const readmeContent = `# GHIGHAIS AI - Exported Project Workspace
 
 Selamat datang di paket arsitektur yang diekspor melalui platform **GHIGHAIS AI**.
@@ -162,13 +207,15 @@ Selamat datang di paket arsitektur yang diekspor melalui platform **GHIGHAIS AI*
 - **GitHub Terhubung:** ${currentUser ? `@${currentUser.login}` : 'Belum dihubungkan'}
 - **Total Repositori:** ${repos.length} repositori
 - **Total Database Terdaftar:** 11 database (Supabase Rekomendasi & Turso Wajib)
+- **Proteksi Keamanan:** Dilengkapi \`.gitignore\` lengkap mencegah kebocoran kredensial dan file sensitif ke GitHub.
 
 ## 📁 Struktur Berkas dalam ZIP:
-1. \`.env\` - Kumpulan variabel lingkungan berisi URL dan Token database yang telah Anda konfigurasikan.
-2. \`database-config.json\` - Konfigurasi terstruktur dari seluruh 11 database.
-3. \`github-manifest.json\` - Informasi akun dan daftar repositori GitHub Anda.
-4. \`src/turso-client.ts\` - Template koneksi libSQL/Turso siap pakai.
-5. \`src/supabase-client.ts\` - Template koneksi Supabase JS siap pakai.
+1. \`.gitignore\` - Wajib ada: melindungi .env, token, credential, cache, dan build files saat push ke GitHub.
+2. \`.env\` - Kumpulan variabel lingkungan berisi URL dan Token database yang telah Anda konfigurasikan.
+3. \`database-config.json\` - Konfigurasi terstruktur dari seluruh 11 database.
+4. \`github-manifest.json\` - Informasi akun dan daftar repositori GitHub Anda.
+5. \`src/turso-client.ts\` - Template koneksi libSQL/Turso siap pakai.
+6. \`src/supabase-client.ts\` - Template koneksi Supabase JS siap pakai.
 
 ## 🚀 Cara Menjalankan Klien Database:
 Salin berkas \`.env\` ke root proyek Anda dan pasang dependensi:
@@ -181,6 +228,14 @@ npm install @supabase/supabase-js @libsql/client
 `;
 
     return [
+      {
+        name: '.gitignore',
+        path: '.gitignore',
+        category: 'git',
+        description: 'Wajib ada: amankan .env, token, secret key, SQLite, build files, dan cache dari GitHub/ZIP',
+        content: gitignoreContent,
+        selected: true,
+      },
       {
         name: '.env',
         path: '.env',
