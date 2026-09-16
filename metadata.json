@@ -1,0 +1,6 @@
+{
+  "name": "GHIGHAIS AI",
+  "description": "Studio pengembangan aplikasi GHIGHAIS AI dengan Qwen AI unlimited, fetcher URL GitHub, editor coding multi-halaman, serta preview interaktif & visual editor zero-error.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@layer utilities {
+  .font-luxury {
+    font-family: 'Cinzel', Georgia, serif;
+  }
+  .font-sans {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+}
+
+/* Luxury gold gradients and glow effects */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fce08b 0%, #d4af37 40%, #aa771c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-border {
+  border-image: linear-gradient(135deg, rgba(245, 208, 115, 0.6), rgba(170, 119, 28, 0.2)) 1;
+}
+
+.luxury-card {
+  background: radial-gradient(120% 120% at 50% 0%, rgba(30, 27, 22, 0.7) 0%, rgba(10, 10, 10, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 0 rgba(245, 208, 115, 0.1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+  box-shadow: 0 25px 50px -12px rgba(212, 175, 55, 0.1), inset 0 1px 0 0 rgba(245, 208, 115, 0.25);
+}
+
+.luxury-glow-gold {
+  box-shadow: 0 0 35px -5px rgba(212, 175, 55, 0.25);
+}
+
+/* Custom sleek scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #09090b;
+}
+::-webkit-scrollbar-thumb {
+  background: #27272a;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37;
+}
